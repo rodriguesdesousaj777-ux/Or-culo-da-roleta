@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Oráculo da Roleta</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {
+    background: #111;
+    color: gold;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+}
+input {
+    width: 60px;
+    font-size: 20px;
+    text-align: center;
+}
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+.resultado {
+    margin-top: 20px;
+    font-size: 20px;
+    color: #0f0;
+}
+</style>
+</head>
+<body>
+
+<h2>🔮 ORÁCULO DA ROLETA</h2>
+<p>Digite os 3 últimos números:</p>
+
+<input id="n1" type="number" min="0" max="36">
+<input id="n2" type="number" min="0" max="36">
+<input id="n3" type="number" min="0" max="36">
+
+<br><br>
+<button onclick="analisar()">ANALISAR</button>
+
+<div class="resultado" id="resultado"></div>
+
+<script>
+function analisar() {
+    const n1 = Number(document.getElementById("n1").value);
+    const n2 = Number(document.getElementById("n2").value);
+    const n3 = Number(document.getElementById("n3").value);
+
+    if (isNaN(n1) || isNaN(n2) || isNaN(n3)) {
+        document.getElementById("resultado").innerText = "Preencha todos os números!";
+        return;
+    }
+
+    const soma = n1 + n2 + n3;
+    let sugestao = "";
+
+    if (soma % 2 === 0) {
+        sugestao += "👉 Tendência: PAR\n";
+    } else {
+        sugestao += "👉 Tendência: ÍMPAR\n";
+    }
+
+    if (soma <= 54) {
+        sugestao += "👉 Alta chance: NÚMEROS BAIXOS (1–18)";
+    } else {
+        sugestao += "👉 Alta chance: NÚMEROS ALTOS (19–36)";
+    }
+
+    document.getElementById("resultado").innerText =
+        "🔢 Soma: " + soma + "\n\n" + sugestao;
+}
+</script>
+
+</body>
+</html>
